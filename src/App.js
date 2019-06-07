@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { renderRoutes, matchRoutes } from 'react-router-config';
+import Header from './components/header';
+// import CustomModal from './components/modal';
+// import { checkAuth } from './actions';
+import { toastmessage } from './utils';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {}
+    };
+  }
+
+
+  render() {
+    let { route } = this.props;
+    let currentPath = matchRoutes(route.routes, window.location.pathname);
+    return (
+      <React.Fragment>
+        <Header />
+        <div className="main-body">
+          {renderRoutes(route.routes, {
+            toastmessage: toastmessage
+          })}
+        </div>
+        {/* <CustomModal {...currentPath[0]} toastmessage={toastmessage} /> */}
+      </React.Fragment>
+    );
+  }
 }
-
-export default App;
+// connect(
+//   null,
+//   { checkAuth }
+// )
+export default (withRouter(App));
