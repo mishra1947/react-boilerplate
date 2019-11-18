@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../style/screen.scss';
 
 class Home extends Component {
   constructor(props) {
@@ -12,7 +13,9 @@ class Home extends Component {
   render() {
     return (
       <React.Fragment>
-          home
+          <div className=''>
+          
+          </div>
       </React.Fragment>
     );
   }
