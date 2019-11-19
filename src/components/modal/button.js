@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { updateModalData } from '../../actions';
+import { updateModalData } from '../../actions/pages';
 
 const ModalButton = ({
   children,
